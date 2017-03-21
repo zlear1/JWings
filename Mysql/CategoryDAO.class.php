@@ -1,4 +1,4 @@
-﻿
+
 <?php
 /*
 *创建人：zhan
@@ -6,8 +6,7 @@
 *说明：类别表操作类
 *版权所有：yynews.com
 */
-
-require_once("./DbConnect.class.php");
+require_once("../Mysql/DbConnect.class.php");
 class CategoryDAO
 {
 	private $conn;
@@ -20,21 +19,43 @@ class CategoryDAO
 
 //2. getCategories功能：取出所有的新闻分类,返回一个二维数组
 	public function getCategories(){
-		$rs =@mysql_query("select * from users",$this->conn);
+		
+		$rs =@mysql_query("select * from users ",$this->conn);
 		if (!$rs) {
+			echo "空";
 			return false;
 		}
 		$catsNum =@mysql_num_rows($rs);
 		if ($catsNum==0) {
+			echo "没有数据";
 			return false;
 		}
 		$rs_array = array();
-		while($row = mysql_fetch_assoc($rs)){
+		 while($row = mysql_fetch_assoc($rs)){
 			$rs_array[] = $row;
 		}
+		print_r($rs_array);
 		return $rs_array;
 	}
-
+	
+	//验证是否账号密码是否正确
+	public function login($stuNum,$password){
+		$rs = mysql_query("select Stuno,password from users where Stuno = "."$stuNum",$this->conn);
+		if(!$rs){
+			return 0;
+		}
+		$catsNum =@mysql_num_rows($rs);
+		if($catsNum == 0){
+			return false;
+		}
+		$row = mysql_fetch_array($rs);
+		if($row["password"] == $password){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	//关闭数据库
 	public function close_mysql(){
 		mysql_close($this->conn);
@@ -137,26 +158,5 @@ public function getCatnameById($catId){
 		mysql_close($this->conn);
 	}
 }
-
-/* 测试代码
-header("content-type:text/html;charset=utf8");
-$ca = new CategoryDAO();
-$rs_array=$ca->getCategories();
- /*$ca->displayCategories($rs_array); */
- $ca->optionCategories($rs_array);
-/*var_dump($ca->updateCategory("花话",5));*/
-/*var_dump($ca->deleteRow(2));*/
-/*$rs =$ca->getIdByCatname('国际新');
-if ($rs) {
-	echo $rs;
-}else{
-	echo "不存在";
-}*/
-/*$rs =$ca->getCatnameById(5);
-if ($rs) {
-	echo $rs;
-}else{
-	echo "不存在";
-}*/	
 
 ?>

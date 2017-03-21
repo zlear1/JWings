@@ -1,14 +1,17 @@
 <?php
-	require_once("./Mysql/CategoryDao.class.php");    //得到对数据库操作的类
+	require_once("../Mysql/CategoryDAO.class.php");    //得到对数据库操作的类
 	$rs = array();                               //用来存储数据库中的数据
-	$accountErr=$passwordErr="";                     //用来存储账号错误信息
-	$account=test_input($_POST["IDnumber"]);
-	$password=test_input($_POST["password"]);
+	// $accountErr=$passwordErr="";                     //用来存储账号错误信息
+	$account=$_POST["user"];
+	$password=$_POST["password"];
 	
 	$DAO = new CategoryDAO();
-	
-	$rs = $DAO->getCategories();
-	echo $rs;
+	$arr =array();
+	if($DAO->login($account,$password)){
+		echo "1";
+	}else{
+		echo "0";
+	}
 	
 	/*
 	function test_input($data)

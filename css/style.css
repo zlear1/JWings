@@ -284,7 +284,7 @@ fieldset#body {
   
 }
 #loginForm #login:hover{
-     background:#444 url("../image/bg-1.jpg") no-repeat center center fixed;
+     background:#444 url("../images/bg-1.jpg") no-repeat center center fixed;
 }
 #loginForm input {
    width: 100%;

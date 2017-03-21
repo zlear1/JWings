@@ -28,7 +28,7 @@ CREATE TABLE `admin` (
 
 /*Data for the table `admin` */
 
-insert  into `admin`(`accountNumber`,`password`) values ('csusthome','likeloub203');
+insert  into `admin`(`accountNumber`,`password`) values ('csusthome','likeloub203'),('咦','123456'),('曾明','1245');
 
 /*Table structure for table `users` */
 
@@ -43,11 +43,11 @@ CREATE TABLE `users` (
   `Major` char(12) NOT NULL COMMENT '专业',
   `password` char(20) NOT NULL COMMENT '密码',
   PRIMARY KEY (`Stuno`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
 
-insert  into `users`(`Name`,`Sexkind`,`Class`,`Stuno`,`SelfAss`,`Major`,`password`) values ('?','?','??1503','201516080325',NULL,'????','111111');
+insert  into `users`(`Name`,`Sexkind`,`Class`,`Stuno`,`SelfAss`,`Major`,`password`) values ('曾明','男','软件1503','201516080327','啊打发士大夫','计通','123456');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

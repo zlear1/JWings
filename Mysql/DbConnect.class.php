@@ -5,7 +5,7 @@
 * 说明：数据库连接类
 *版权所有：jwings.com
 */
- require_once("./Db.Conf.php");   //引入配置常量文件
+ require_once("../Mysql/Db.Conf.php");   //引入配置常量文件
  date_default_timezone_set(TIMEZONE); //设置用在脚本中所有日期/时间函数的默认时区
  class DbConnect
  {

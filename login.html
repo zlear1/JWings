@@ -4,18 +4,12 @@
 <title>JWings</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Personale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="applijegleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />	
 <script src="js/jquery-1.11.1.min.js"></script>
-<!--webfonts-->
-<!--//webfonts-->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
-<!--/script-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -24,118 +18,164 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
+<!--js表单验证-->
+<script>
+	//验证填写格式是否正确
+	function validateForm(){
+		var x=document.forms["loginForm"]["IDnumber"].value;
+		if(x==null ||x==""){
+			alert("账号必须填写");
+			return false;
+		}
+		if (!preg_match("/^[a-zA-Z ]*$/",x)) 
+		{
+			$nameErr = "只允许字母和空格"; 
+			return false;
+		}
+	}
+	
+	//验证账号密码是否正确
+	function Login(){
+		var xmlHttp;
+		var username = document.getElementById("IDnumber").value;
+		var password = document.getElementById("password").value;
+		if(username.length == 0){
+			alert('111');
+		}
+		if (window.XMLHttpRequest)
+		{
+			// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+			xmlHttp=new XMLHttpRequest();
+		}
+		else
+		{
+			// IE6, IE5 浏览器执行代码
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		if(xmlHttp == null){
+			alert("Browser does not support Http Request");
+			
+		}
+		xmlHttp.onreadystatechange=function()
+		{
+			if (xmlHttp.readyState==4 && xmlHttp.status==200)
+			{
+				var msg = xmlHttp.responseText;
+				if(msg == 1){
+					window.location.href = './index/index.html';
+				}
+				else{
+					alert("账号或者密码错误！");
+				}
+			}
+		}
+		var url = "./php/login.php";
+		xmlHttp.open("POST",url,true);
+		xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlHttp.send("user="+username+"&password="+password);
+	}
+	
+</script>
 </head>
 <body>
-<!--start-home-->
-					<ul class="side_nav">
-							<li><a class="active scroll" href="#主页"></a></li>
-								<li><a class="scroll" href="#about"></a></li>
-								<li><a class="scroll" href="#experience"></a></li>
-								<li><a class="scroll" href="#skill"></a></li>
-								<li><a class="scroll" href="#project"></a></li>
-								<li><a class="scroll" href="#port"></a></li>
-								<li><a class="scroll" href="#contact"></a></li>
-					</ul>
-		<div class="banner" id="home">
-			<div class="header-top">
-				<div class="container">	
-					<!--top-nav-->
-					<span class="menu"> </span>
-					<div class="top-menu">
-						<nav>
-							<ul class="cl-effect-16">
-								<li><a class="active scroll" href="#home" data-hover="主页">主页</a></li>
-								<li><a class="scroll" href="#about" data-hover="实验室介绍">实验室介绍</a></li>
-								<li><a class="scroll" href="#experience" data-hover="experience">experience</a></li>
-								<li><a class="scroll" href="#skill" data-hover="Skills">Skills</a></li>
-								<li><a class="scroll" href="#project" data-hover="Projects">Projects</a></li>
-								<li><a class="scroll" href="#port" data-hover="Portfolio">Portfolio</a></li>
-								<li><a class="scroll" href="#contact" data-hover="注册">注册</a></li>
-								<div class="clearfix"></div>
-							</ul>
-						</nav>		
-					</div>
-					<div class="login-pop">
-						<div id="loginpop"><a href="#" id="loginButton"><span>登陆 <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a>
-								<div id="loginBox">                
-									<form id="loginForm" method="post" action="../php/login.php"  onsubmit="return validateForm()">
-											<fieldset id="body">
-												<fieldset>
-													  <label for="IDnumber">账号</label>
-													  <input type="text" name="IDnumber" id="IDnumber">
-												</fieldset>
-												<fieldset>
-														<label for="password">密码</label>
-														<input type="password" name="password" id="password">
-												 </fieldset>
-												<input type="submit" id="login" value="登陆">
-												<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
+
+
+
+	<!--start-home-->
+	<ul class="side_nav">
+			<li><a class="active scroll" href="#home"></a></li>
+				<li><a class="scroll" href="#about"></a></li>
+				<li><a class="scroll" href="#experience"></a></li>
+				<li><a class="scroll" href="#project"></a></li>
+				<li><a class="scroll" href="#port"></a></li>
+				<li><a class="scroll" href="#contact"></a></li>
+	</ul>
+	<div class="banner" id="home">
+		<div class="header-top">
+			<div class="container">	
+				<!--top-nav-->
+				<span class="menu"> </span>
+				<div class="top-menu">
+					<nav>
+						<ul class="cl-effect-16">
+							<li><a class="active scroll" href="#home" data-hover="主页">主页</a></li>
+							<li><a class="scroll" href="#about" data-hover="实验室介绍">实验室介绍</a></li>
+							<li><a class="scroll" href="#experience" data-hover="实验室历史">实验室历史</a></li>
+							<li><a class="scroll" href="#project" data-hover="实验室组成">实验室组成</a></li>
+							<li><a class="scroll" href="#port" data-hover="项目成就">项目成就</a></li>
+							<li><a class="scroll" href="#contact" data-hover="注册">注册</a></li>
+							<div class="clearfix"></div>
+						</ul>
+					</nav>		
+				</div>
+				<div class="login-pop">
+					<div id="loginpop"><a href="#" id="loginButton"><span>登陆 <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a>
+							<div id="loginBox">             
+								<form id="loginForm" method="post" action=""  onsubmit="return validateForm()">
+										<fieldset id="body">
+											<fieldset>
+												<label for="IDnumber">账号</label>
+												<input type="text" name="IDnumber" id="IDnumber" onkeydown="if(event.keyCode==13){login.click()}">
 											</fieldset>
-										<span><a href="#">忘记密码?</a></span>
-								 </form>
-							</div>
-					    </div>
-					</div><script src="js/menu_jquery.js"></script>
-
-				<!-- script-for-menu -->
-								<script>
-									$("span.menu").click(function(){
-										$(".top-menu ul").slideToggle("slow" , function(){
-										});
-									});
-									
-									function validateForm(){
-										var x=document.forms["loginForm"]["IDnumber"].value;
-										if(x==null ||x==""){
-											alert("账号必须填写");
-											return false;
-										}
-										if (!preg_match("/^[a-zA-Z ]*$/",x)) 
-										{
-											$nameErr = "只允许字母和空格"; 
-											return false;
-										}
-									}
-								</script>
-
-								<!-- script-for-menu -->
-
-				 <div class="clearfix"></div>
-			<!-- script-for-menu -->
-		    </div>
-		  </div>
-		<!--banner-->	
-		<div class="container">	
-		      <!-- script-for-menu -->	  	 
-				  <div class="banner-info">	
-						 <div class="logo">
-							  <a ><h1>JWings Lab</h1></a>
-						  </div>
-						<p> Donec rhoncus bibendum tempor.Lorem Ipsum Maecenas tristique orci ac sem.<lable> Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsumipsum dolor sit amet,</lable> consectetuer dolor sit.</p>
-						<div class="scroll-down">
-						 <h4>SCROLL DOWN</h4>
-						<a class="downarrow scroll" href="#about"><span></span></a>
+											<fieldset>
+													<label for="password">密码</label>
+													<input type="password" name="password" id="password" onkeydown="if(event.keyCode==13){login.click()}">
+											</fieldset>
+											<input type="button" id="login" name="login" value="登陆" onclick="Login()">
+											<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
+										</fieldset>
+									<span><a href="#">忘记密码?</a></span>
+							</form>
 						</div>
-				  </div>
+					</div>
+				</div><script src="js/menu_jquery.js"></script>
+	
+			<!-- script-for-menu -->
+							<script>
+								$("span.menu").click(function(){
+									$(".top-menu ul").slideToggle("slow" , function(){
+									});
+								});
+							</script>
+	
+							<!-- script-for-menu -->
+	
+			<div class="clearfix"></div>
+		<!-- script-for-menu -->
+		</div>
+	</div>
+	<!--banner-->	
+	<div class="container">	
+		<!-- script-for-menu -->	  	 
+			<div class="banner-info">	
+					<div class="logo">
+						<a ><h1>JWings Lab</h1></a>
+					</div>
+					<p> Donec rhoncus bibendum tempor.Lorem Ipsum Maecenas tristique orci ac sem.<lable> Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsumipsum dolor sit amet,</lable> consectetuer dolor sit.</p>
+					<div class="scroll-down">
+					<h4>SCROLL DOWN</h4>
+					<a class="downarrow scroll" href="#about"><span></span></a>
+					</div>
 			</div>
 		</div>
+	</div>
 	<!--about-->
 	<div class="about" id="about">
-	   <div class="container">
-	   <h3 class="tittle">About Me</h3>
-	      <div class="col-md-5 ab-grid pic">
-		  <img src="images/ab.jpg" alt=" " title="ab">
-		  </div>
-		  <div class="col-md-7 ab-grid text">
-		    <h4>I am jessica, I live in Newyork. I am WP Theme Developer, UI/UX Developer, Internet Consultant.</h4>
+	<div class="container">
+	<h3 class="tittle">About Me</h3>
+		<div class="col-md-5 ab-grid pic">
+		<img src="images/ab.jpg" alt=" " title="ab">
+		</div>
+		<div class="col-md-7 ab-grid text">
+			<h4>I am jessica, I live in Newyork. I am WP Theme Developer, UI/UX Developer, Internet Consultant.</h4>
 			<p>We are a professional Software comapny with the best talent and most modern technology for online solutions & focused on providing clients with effective online marketing solutions.</p>
 			<p>We focused on providing clients with effective online marketing solutions.</p>
 			<p>I know 4 languages. Working on this field for 5+ years and got many design awards.</p>
-			 
-		  </div>
-		  <div class="clearfix"> </div>
-	   </div>
-    </div>	   
+			
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	</div>	   
 	<!--//about-->
 	<!--experience-starts-->
 	<div class="experience" id="experience">
@@ -168,102 +208,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--experience-end-->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >手机网站模板</a></div>
-<!--my-skill-->
-  <div class="my-skills text-center" id="skill">
-	<div class="container">
-		<h3 class="tittle">My Skills</h3>
-		<div class="skill-grids">
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-1"></div>
-						<p>Photoshop</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-2"></div>
-						<p>Illustrator</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-3"></div>
-						<p>Photography</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-4"></div>
-						<p>Html 5 / CSS 3</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-5"></div>
-						<p>C4D</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-6"></div>
-						<p>After Effect</p>
-					</div>
-					<div class="clearfix"> </div>
-				 <script type="text/javascript" src="js/circles.js"></script>
-					         <script>
-								var colors = [
-										['#f6608a', '#ffffff'], ['#f6608a', '#ffffff'], ['#f6608a', '#ffffff'], ['#f6608a', '#ffffff'], ['#f6608a', '#ffffff'], ['#f6608a', '#ffffff']
-									];
-								for (var i = 1; i <= 7; i++) {
-									var child = document.getElementById('circles-' + i),
-										percentage = 30 + (i * 10);
-										
-									Circles.create({
-										id:         child.id,
-										percentage: percentage,
-										radius:     80,
-										width:      10,
-										number:   	percentage / 1,
-										text:       '%',
-										colors:     colors[i - 1]
-									});
-								}
-						
-				</script>
-		</div>
-	</div>	
-</div>
-<!--//my-skill-->
-<!-- projects -->
-		<div class="projects" id="project">
-			<div class="container">
-				<div class="project-grids">
-					<div class="cycle">
-						<span> </span>
-					</div>
-					<div class="project-grid total-project">
-						<p>79</p>
-						<h4>Projects</h4>
-						<span> <i class="glyphicon glyphicon-edit"> </i></span>
-					</div>
-					<div class="project-grid clientsgrid">
-						<div>
-						<p>25</p>
-						<h4>Clients</h4>
-						</div>
-						<span> <i class="glyphicon glyphicon-user"> </i></span>
-					</div>
-					<div class="project-grid people-grid">
-						<div>
-						<p>100%</p>
-						<h4>Satisfaction</h4>
-						</div>
-						<span> <i class="glyphicon glyphicon-thumbs-up"> </i></span>
-					</div>
-					<div class="clearfix"> </div>
+	<div class="copyrights">Collect from</div>
+	
+	<!-- projects -->
+	<div class="projects" id="project">
+		<div class="container">
+			<div class="project-grids">
+				<div class="cycle">
+					<span> </span>
 				</div>
+				<div class="project-grid total-project">
+					<p>79</p>
+					<h4>Projects</h4>
+					<span> <i class="glyphicon glyphicon-edit"> </i></span>
+				</div>
+				<div class="project-grid clientsgrid">
+					<div>
+					<p>25</p>
+					<h4>Clients</h4>
+					</div>
+					<span> <i class="glyphicon glyphicon-user"> </i></span>
+				</div>
+				<div class="project-grid people-grid">
+					<div>
+					<p>100%</p>
+					<h4>Satisfaction</h4>
+					</div>
+					<span> <i class="glyphicon glyphicon-thumbs-up"> </i></span>
+				</div>
+				<div class="clearfix"> </div>
 			</div>
 		</div>
-		<!-- projects -->
-		<!--portfolio-->
-		<script src="js/jquery.chocolat.js"></script>
-			<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
-			<!--light-box-files -->
-			<script type="text/javascript" charset="utf-8">
-			$(function() {
-				$('.gallery a').Chocolat();
-			});
-			</script>
+	</div>
+	<!-- projects -->
+	<!--portfolio-->
+	<script src="js/jquery.chocolat.js"></script>
+		<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
+		<!--light-box-files -->
+		<script type="text/javascript" charset="utf-8">
+		$(function() {
+			$('.gallery a').Chocolat();
+		});
+	</script>
 
 	<div class="gallery" id="port">
 		<div class="container">
@@ -332,9 +318,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 		</script>
 
-<!--//portfolio-->
+	<!--//portfolio-->
 
- <!--start-contact-->
+	<!--start-contact-->
 	 <div class="contact_desc" id="contact">
 		        <div class="container">
 		        	<h3 class="tittle">Contact Me</h3>
@@ -368,22 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 		   <div class="contact" id="contact">
-		         <div class="col-md-6 contact-top">
-				     	<div class="point"> <i class="glyphicon glyphicon-map-marker"></i></div>
-					  <h3 class="tittle two">Find Me</h3>
-				      <h4>For Any questions, Please feel free to Contact me by mail.</h4>
-					     <div class="contact-ad">
-								<p>Address:Newyork Still Road.756 gt globel Place.<p>
-								<p>Phone:Newyork Still Road.756 gt globel Place.<p>
-								<p>E-mail :<a href="mailto:info@example.com">mail@example.com</a></p>
-
-					     </div>
-			      </div>
-				  <div class="col-md-6 map">
-						<div class="black"> 
-						  <div class="map-l"> <i class="glyphicon glyphicon-map-marker"></i></div>
-						</div>
-					</div>
+		         
 					<div class="clearfix"> </div>
 	       </div>
 	<!--//contact-->
